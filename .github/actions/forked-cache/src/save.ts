@@ -6,6 +6,14 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+
+    if (core.getInput(Inputs.RestoreOnly) === "true") {
+      core.info(
+        "Cache action configured for restore-only, skipping save step."
+      );
+      return;
+    }
+
     if (!utils.isValidEvent()) {
       utils.logWarning(
         `Event Validation Error: The event type ${
