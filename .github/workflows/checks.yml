@@ -1,0 +1,99 @@
+name: Status Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+
+  install:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.16.1 # Match version with build versions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
+
+      - name: Use the local cache job
+        uses: ./actions/forked-cache/
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Check/Compile
+        run: yarn compile:libs
+
+
+
+  ####################################################
+  ############################### LINT
+  ####################################################
+
+  lint:
+    needs: install
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.16.1 # Match version with build versions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
+
+      - name: Use the local cache job
+        uses: ./actions/forked-cache/
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/yarn.lock') }}
+          restore-only: true
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-yarn-
+
+      - name: Lint it
+        run: yarn lint
+
+
+
+  ####################################################
+  ############################### BUILD
+  ####################################################
+
+  build:
+    needs: install
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.16.1 # Match version with build versions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
+
+      - name: Use the local cache job
+        uses: ./actions/forked-cache/
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/yarn.lock') }}
+          restore-only: true
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-
+            ${{ runner.os }}-yarn-
+
+      - name: Build it
+        run: yarn build
