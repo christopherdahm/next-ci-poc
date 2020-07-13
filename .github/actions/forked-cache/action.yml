@@ -24,7 +24,7 @@ runs:
   using: 'node12'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: 'success() && github.event.inputs.restoreOnly == "false"'
+  post-if: 'success() && github.event.inputs.restoreOnly == false'
 branding:
   icon: 'archive'
   color: 'gray-dark'
