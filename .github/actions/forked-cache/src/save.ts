@@ -6,18 +6,19 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+
+    if (core.getInput(Inputs.RestoreOnly) === "true") {
+      core.info(
+        "Cache action configured for restore-only, skipping save step."
+      );
+      return;
+    }
+
     if (!utils.isValidEvent()) {
       utils.logWarning(
         `Event Validation Error: The event type ${
           process.env[Events.Key]
         } is not supported because it's not tied to a branch or tag ref.`
-      );
-      return;
-    }
-
-    if (core.getInput(Inputs.RestoreOnly) === "true") {
-      core.info(
-        "Cache action configured for restore-only, skipping save step."
       );
       return;
     }
