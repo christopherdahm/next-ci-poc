@@ -17,6 +17,9 @@ inputs:
   restore-only:
     description: 'Disables saving a new cache entry when true'
     required: false
+  testsave:
+    description: 'Allows save'
+    required: false
 outputs:
   cache-hit:
     description: 'A boolean value to indicate an exact match was found for the primary key'
@@ -24,7 +27,7 @@ runs:
   using: 'node12'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: 'success() && github.event.inputs.restoreOnly == false'
+  post-if: 'success() && (github.event.inputs.restoreOnly == false || github.event.inputs.testsave == true)'
 branding:
   icon: 'archive'
   color: 'gray-dark'
