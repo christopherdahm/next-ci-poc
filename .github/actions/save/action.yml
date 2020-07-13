@@ -1,4 +1,4 @@
-name: 'Cache'
+name: 'Cache Save'
 description: 'Cache artifacts like dependencies and build outputs to improve workflow execution time'
 author: 'GitHub'
 inputs:
@@ -11,17 +11,12 @@ inputs:
   restore-keys:
     description: 'An ordered list of keys to use for restoring the cache if no cache hit occurred for key'
     required: false
-  test:
-    description: 'Ugh'
-    required: false
 outputs:
   cache-hit:
     description: 'A boolean value to indicate an exact match was found for the primary key'
 runs:
   using: 'node12'
-  main: 'dist/restore/index.js'
-  post: 'dist/save/index.js'
-  post-if: success() && ${{ inputs.test == true }}
+  main: './../forked-cache/dist/save/index.js'
 branding:
   icon: 'archive'
   color: 'gray-dark'
