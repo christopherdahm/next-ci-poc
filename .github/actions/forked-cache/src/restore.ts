@@ -6,9 +6,10 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
-    utils.logWarning(`Restore Only ${ Inputs.RestoreOnly } `)
-    console.log('Restore Only: ', Inputs.RestoreOnly);
-    console.log('Type: ', typeof Inputs.RestoreOnly);
+    const value = core.getInput(Inputs.RestoreOnly);
+    utils.logWarning(`Restore Only ${ value } `)
+    console.log('Restore Only: ', value);
+    console.log('Type: ', typeof value);
 
     // Validate inputs, this can cause task failure
     if (!utils.isValidEvent()) {
