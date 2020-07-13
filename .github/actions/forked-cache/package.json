@@ -3,9 +3,9 @@
   "version": "1.1.2",
   "private": true,
   "description": "Cache dependencies and build outputs, forked from https://github.com/actions/cache, based on feature from https://github.com/actions/cache/pull/164#issuecomment-645667994",
-  "main": "dist/save/index.js",
+  "main": "dist/restore/index.js",
   "scripts": {
-    "build": "tsc && ncc build -o dist/save src/save.ts",
+    "build": "tsc && ncc build -o dist/restore src/restore.ts && ncc build -o dist/save src/save.ts",
     "lint": "eslint **/*.ts --cache"
   },
   "repository": {

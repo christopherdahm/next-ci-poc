@@ -6,6 +6,9 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+    const value = core.getInput(Inputs.RestoreOnly);
+    core.info(`Restore Only ${ value } `)
+    core.info(`Type: ${typeof value}`);
 
     // Validate inputs, this can cause task failure
     if (!utils.isValidEvent()) {
