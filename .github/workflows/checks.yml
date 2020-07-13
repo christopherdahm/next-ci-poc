@@ -9,6 +9,9 @@ jobs:
   install:
     runs-on: ubuntu-18.04
 
+    env:
+      STATE_postSave: true
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 12.16.1 # Match version with build versions
