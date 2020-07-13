@@ -30,7 +30,7 @@ jobs:
 
       - name: Echo it
         run: |
-          echo "Here is the input: $github.event.inputs.testsave"
+          echo "Here is the input: ${{github.event.inputs.testsave}}"
 
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
