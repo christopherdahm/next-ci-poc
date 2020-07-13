@@ -28,6 +28,10 @@ jobs:
             ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}-
             ${{ runner.os }}-yarn-
 
+      - name: Echo it
+        run: |
+          echo "Here is the input: $github.event.inputs.testsave"
+
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn
