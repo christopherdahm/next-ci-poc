@@ -17,7 +17,7 @@ jobs:
           node-version: '12.16.1'
 
       - name: Use the local cache job
-        uses: ./actions/forked-cache/
+        uses: ./.github/actions/forked-cache/
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: node_modules
@@ -52,7 +52,7 @@ jobs:
           node-version: '12.16.1'
 
       - name: Use the local cache job
-        uses: ./actions/forked-cache/
+        uses: ./.github/actions/forked-cache/
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: node_modules
@@ -84,7 +84,7 @@ jobs:
           node-version: '12.16.1'
 
       - name: Use the local cache job
-        uses: ./actions/forked-cache/
+        uses: ./.github/actions/forked-cache/
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: node_modules
