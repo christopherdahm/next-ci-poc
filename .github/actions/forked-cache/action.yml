@@ -27,7 +27,7 @@ runs:
   using: 'node12'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: 'success() && github.env.STATE_postSave == "true"'
+  post-if: 'success() && github.env.STATE_postSave == true'
 branding:
   icon: 'archive'
   color: 'gray-dark'
