@@ -6,6 +6,17 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
+    core.warning(`Restore test: -> ${core.getInput(Inputs.Test)} <-`);
     // Validate inputs, this can cause task failure
     if (!utils.isValidEvent()) {
       utils.logWarning(
