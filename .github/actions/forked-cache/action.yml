@@ -1,9 +1,6 @@
-name: 'ForkedCacheSave'
+name: 'Cache'
 description: 'Cache artifacts like dependencies and build outputs to improve workflow execution time'
 author: 'GitHub'
-### Forked from GitHub's actions/cache and the indicated PR for "restore-only" options
-### https://github.com/actions/cache
-### https://github.com/actions/cache/pull/164#issuecomment-645667994
 inputs:
   path:
     description: 'A list of files, directories, and wildcard patterns to cache and restore'
@@ -14,12 +11,17 @@ inputs:
   restore-keys:
     description: 'An ordered list of keys to use for restoring the cache if no cache hit occurred for key'
     required: false
+  test:
+    description: 'Ugh'
+    required: false
 outputs:
   cache-hit:
     description: 'A boolean value to indicate an exact match was found for the primary key'
 runs:
   using: 'node12'
-  main: '../forked-cache/dist/save/index.js'
+  main: 'dist/restore/index.js'
+  post: 'dist/save/index.js'
+  post-if: 'success() && github.event.inputs.test == true'
 branding:
   icon: 'archive'
   color: 'gray-dark'
