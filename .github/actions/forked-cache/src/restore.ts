@@ -10,6 +10,8 @@ async function run(): Promise<void> {
     core.info(`Restore Only ${ value } `)
     core.info(`Type: ${typeof value}`);
 
+    console.log(`::save-state name=skipPost::${value}`);
+
     // Validate inputs, this can cause task failure
     if (!utils.isValidEvent()) {
       utils.logWarning(
