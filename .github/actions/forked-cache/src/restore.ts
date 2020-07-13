@@ -6,6 +6,9 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+    console.log('Restore Only: ', Inputs.RestoreOnly);
+    console.log('Type: ', typeof Inputs.RestoreOnly);
+
     // Validate inputs, this can cause task failure
     if (!utils.isValidEvent()) {
       utils.logWarning(
