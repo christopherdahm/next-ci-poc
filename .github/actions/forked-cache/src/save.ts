@@ -6,6 +6,18 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+    core.warning(core.getInput(Inputs.Test));
+
     if (!utils.isValidEvent()) {
       utils.logWarning(
         `Event Validation Error: The event type ${
