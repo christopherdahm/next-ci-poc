@@ -4990,10 +4990,6 @@ const utils = __importStar(__webpack_require__(443));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            if (core.getInput(constants_1.Inputs.RestoreOnly) === "true") {
-                core.info("Cache action configured for restore-only, skipping save step.");
-                return;
-            }
             if (!utils.isValidEvent()) {
                 utils.logWarning(`Event Validation Error: The event type ${process.env[constants_1.Events.Key]} is not supported because it's not tied to a branch or tag ref.`);
                 return;

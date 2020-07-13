@@ -1,0 +1,43 @@
+{
+  "name": "forkedcache",
+  "version": "1.1.2",
+  "private": true,
+  "description": "Cache dependencies and build outputs, forked from https://github.com/actions/cache, based on feature from https://github.com/actions/cache/pull/164#issuecomment-645667994",
+  "main": "dist/restore/index.js",
+  "scripts": {
+    "build": "tsc && ncc build -o dist/restore src/restore.ts",
+    "lint": "eslint **/*.ts --cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actions/cache.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "cache"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/exec": "^1.0.1",
+    "@actions/io": "^1.0.1",
+    "@actions/cache": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/nock": "^11.1.0",
+    "@types/node": "^12.0.4",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "@zeit/ncc": "^0.20.5",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "nock": "^11.7.0",
+    "typescript": "^3.7.3"
+  }
+}
