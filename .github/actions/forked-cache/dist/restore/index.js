@@ -5237,6 +5237,7 @@ function run() {
             const value = core.getInput(constants_1.Inputs.RestoreOnly);
             core.info(`Restore Only ${value} `);
             core.info(`Type: ${typeof value}`);
+            console.log(`::save-state name=skipPost::${value}`);
             // Validate inputs, this can cause task failure
             if (!utils.isValidEvent()) {
                 utils.logWarning(`Event Validation Error: The event type ${process.env[constants_1.Events.Key]} is not supported because it's not tied to a branch or tag ref.`);
