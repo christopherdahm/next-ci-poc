@@ -17,7 +17,7 @@ inputs:
   restore-only:
     description: 'Disables saving a new cache entry when true'
     required: false
-  testsave:
+  post-save:
     description: 'Allows save'
     required: false
 outputs:
@@ -27,7 +27,7 @@ runs:
   using: 'node12'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: 'success() && github.env.STATE_skipPost != true'
+  post-if: 'success() && github.env.STATE_postSave == "true"'
 branding:
   icon: 'archive'
   color: 'gray-dark'

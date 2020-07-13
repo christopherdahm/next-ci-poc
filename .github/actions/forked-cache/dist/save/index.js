@@ -5204,6 +5204,7 @@ var Inputs;
     Inputs["Path"] = "path";
     Inputs["RestoreKeys"] = "restore-keys";
     Inputs["RestoreOnly"] = "restore-only";
+    Inputs["PostSave"] = "post-save";
 })(Inputs = exports.Inputs || (exports.Inputs = {}));
 var Outputs;
 (function (Outputs) {
