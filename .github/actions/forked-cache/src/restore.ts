@@ -6,6 +6,7 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+    utils.logWarning(`Restore Only ${ Inputs.RestoreOnly } `)
     console.log('Restore Only: ', Inputs.RestoreOnly);
     console.log('Type: ', typeof Inputs.RestoreOnly);
 
