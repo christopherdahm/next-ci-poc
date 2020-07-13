@@ -6,6 +6,12 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
+    const value = core.getInput(Inputs.PostSave);
+    core.info(`Restore Only ${ value } `)
+    core.info(`Type: ${typeof value}`);
+
+    console.log(`::save-state name=postSave::${value}`);
+
     // Validate inputs, this can cause task failure
     if (!utils.isValidEvent()) {
       utils.logWarning(
