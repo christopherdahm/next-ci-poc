@@ -2,8 +2,6 @@ export enum Inputs {
   Key = "key",
   Path = "path",
   RestoreKeys = "restore-keys",
-  RestoreOnly = "restore-only",
-  PostSave = "post-save",
 }
 
 export enum Outputs {
