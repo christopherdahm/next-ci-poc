@@ -36,6 +36,7 @@ jobs:
         run: yarn
 
       - name: Check/Compile
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn compile:libs
 
 
