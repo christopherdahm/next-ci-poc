@@ -27,7 +27,7 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
-          GIT_EDITOR=true && export GIT_MERGE_AUTOEDIT=no && git rebase -i --root
+          git rebase --root
 
       - name: Try Push
         if: success()
