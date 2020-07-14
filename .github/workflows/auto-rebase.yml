@@ -51,6 +51,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: release/next
+          force: true
 
       - name: Open PR
         if: failure()
