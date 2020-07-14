@@ -61,6 +61,6 @@ jobs:
           assignees: ${{ github.event.pusher.name }}
           reviewers:
           team-reviewers:
-          draft: true
-          branch: release/next
+          draft: false
+          branch: origin/release/next
           request-to-parent: false
