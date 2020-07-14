@@ -3,33 +3,18 @@ on:
   push:
     branches:
       - develop
+
 jobs:
   rebase:
     name: Rebase Next
     runs-on: ubuntu-latest
     steps:
 
-#      - name: Checkout develop
-#        uses: actions/checkout@v1
-#        with:
-#          ref: develop
-#          fetch-depth: 0
-#
-#      - name: Update develop from upstream
-#        if: success()
-#        run: |
-#          git pull --rebase
-
       - name: Check out release/next
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           ref: release/next
           fetch-depth: 0
-
-#      - name: Update release/next from upstream
-#        if: success()
-#        run: |
-#          git pull --rebase
 
       - name: User relative author
         if: success()
@@ -41,10 +26,6 @@ jobs:
         run: |
           git rebase origin/develop
 
-#      - name: Try Push
-#        if: success()
-#        run: |
-#          git push -f
       - name: Push changes
         if: success()
         uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
