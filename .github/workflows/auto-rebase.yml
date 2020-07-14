@@ -6,6 +6,7 @@ on:
 jobs:
   rebase:
     name: Rebase Next
+#    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
@@ -14,12 +15,7 @@ jobs:
           ref: 'release/next'
           fetch-depth: 0
 
-      - name: Try Rebase
-        if: success()
-        run: |
-          git rebase develop
-
-      - name: Try Push
-        if: success()
-        run: |
-          git push
+      - name: Automatic Rebase
+        uses: cirrus-actions/rebase@b58fa7bac6d1d885234db03877f1d599c3ff48c7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
