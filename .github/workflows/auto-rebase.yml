@@ -62,5 +62,5 @@ jobs:
           reviewers:
           team-reviewers:
           draft: false
-          branch: origin/release/next
+          base: release/next
           request-to-parent: false
