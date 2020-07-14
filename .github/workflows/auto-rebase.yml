@@ -34,6 +34,13 @@ jobs:
           branch: release/next
           force: true
 
+      - name: Check out develop
+        if: failure()
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+          fetch-depth: 0
+
       - name: Create Pull Request
         if: failure()
         uses: peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
@@ -55,6 +62,5 @@ jobs:
           reviewers:
           team-reviewers:
           draft: true
-          branch: origin/develop
-          base: origin/release/next
+          branch: release/next
           request-to-parent: false
