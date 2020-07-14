@@ -10,11 +10,24 @@ jobs:
     steps:
 
       - name: Checkout develop
+<<<<<<< HEAD
         uses: actions/checkout@v2
 
       - name: Check out release/next
         run: |
           git checkout release/next
+=======
+        uses: actions/checkout@v1
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - name: Check out release/next
+        uses: actions/checkout@v1
+        with:
+          ref: release/next
+          fetch-depth: 0
+>>>>>>> aab97fd989f244b06d153fa546259eb02c5f7ad6
 
       - name: User relative author
         if: success()
@@ -24,12 +37,27 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
+<<<<<<< HEAD
           git pull --rebase && git rebase --onto develop
 
       - name: Try Push
         if: success()
         run: |
           git push -f
+=======
+          git branch -a && git pull --rebase && git rebase develop && git pull --rebase
+
+#      - name: Try Push
+#        if: success()
+#        run: |
+#          git push -f
+      - name: Push changes
+        if: success()
+        uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release/next
+>>>>>>> aab97fd989f244b06d153fa546259eb02c5f7ad6
 
       - name: Open PR
         if: failure()
