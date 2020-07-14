@@ -4990,17 +4990,11 @@ const utils = __importStar(__webpack_require__(443));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Save test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
+            const restoreOnly = core.getInput(constants_1.Inputs.RestoreOnly);
+            if (restoreOnly) {
+                core.info(`Restore Only indicated as "${restoreOnly}", skipping save`);
+                return;
+            }
             if (!utils.isValidEvent()) {
                 utils.logWarning(`Event Validation Error: The event type ${process.env[constants_1.Events.Key]} is not supported because it's not tied to a branch or tag ref.`);
                 return;
@@ -5210,7 +5204,7 @@ var Inputs;
     Inputs["Key"] = "key";
     Inputs["Path"] = "path";
     Inputs["RestoreKeys"] = "restore-keys";
-    Inputs["Test"] = "test";
+    Inputs["RestoreOnly"] = "restore-only";
 })(Inputs = exports.Inputs || (exports.Inputs = {}));
 var Outputs;
 (function (Outputs) {
