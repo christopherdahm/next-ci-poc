@@ -9,11 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout the latest next
+      - name: Checkout develop
         uses: actions/checkout@v2
-        with:
-          ref: 'release/next'
-          fetch-depth: 0
+
+      - name: Check out release/next
+        run: |
+          git checkout release/next
 
       - name: User relative author
         if: success()
