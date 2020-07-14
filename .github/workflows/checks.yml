@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     env:
-      STATE_postSave: true
+      test: true
 
     steps:
       - uses: actions/checkout@v2
