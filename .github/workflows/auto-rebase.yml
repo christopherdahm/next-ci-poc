@@ -22,12 +22,12 @@ jobs:
 
       - name: User relative author
         run: |
-          export GIT_MERGE_AUTOEDIT = no && git config --global user.email ${{ github.event.pusher.email }} && git config --global user.name ${{ github.event.pusher.name }}
+          GIT_EDITOR=true && git config --global user.email ${{ github.event.pusher.email }} && git config --global user.name ${{ github.event.pusher.name }}
 
       - name: Try Rebase
         if: success()
         run: |
-          git rebase -i --root
+          git rebase -i --root --continue
 
       - name: Try Push
         if: success()
