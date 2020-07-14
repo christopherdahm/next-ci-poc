@@ -13,11 +13,13 @@ jobs:
         uses: actions/checkout@v1
         with:
           ref: develop
+          fetch-depth: 0
 
       - name: Check out release/next
         uses: actions/checkout@v1
         with:
           ref: release/next
+          fetch-depth: 0
 
       - name: User relative author
         if: success()
@@ -29,10 +31,15 @@ jobs:
         run: |
           git branch -a && git pull --rebase && git rebase develop
 
-      - name: Try Push
+#      - name: Try Push
+#        if: success()
+#        run: |
+#          git push -f
+      - name: Push changes
         if: success()
-        run: |
-          git push -f
+        uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Open PR
         if: failure()
