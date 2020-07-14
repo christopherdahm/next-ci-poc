@@ -6,17 +6,13 @@ import * as utils from "./utils/actionUtils";
 
 async function run(): Promise<void> {
   try {
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
-    core.warning(`Save test: -> ${core.getInput(Inputs.Test)} <-`);
+    const restoreOnly = core.getInput(Inputs.RestoreOnly);
+    if (restoreOnly) {
+      core.info(
+        `Restore Only indicated as "${ restoreOnly }", skipping save`
+      );
+      return;
+    }
 
     if (!utils.isValidEvent()) {
       utils.logWarning(
