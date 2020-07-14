@@ -1,6 +1,6 @@
 # NextCiPoc
 
-Hi 2 trigger
+Hi 2 trigger trigger
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
