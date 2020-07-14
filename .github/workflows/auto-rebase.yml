@@ -27,7 +27,7 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
-          git pull --rebase
+          git pull && git rebase --root
 
       - name: Try Push
         if: success()
