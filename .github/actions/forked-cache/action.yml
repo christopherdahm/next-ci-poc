@@ -21,7 +21,7 @@ runs:
   using: 'node12'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: ${{ success() && inputs.test == 'true' }}
+  post-if: success() && ${{ inputs.test == 'true' }}
 branding:
   icon: 'archive'
   color: 'gray-dark'
