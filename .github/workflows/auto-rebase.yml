@@ -8,11 +8,6 @@ jobs:
     name: Rebase Next
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the latest develop
-        uses: actions/checkout@v2
-        with:
-          ref: 'develop'
-          fetch-depth: 0
 
       - name: Checkout the latest next
         uses: actions/checkout@v2
@@ -28,7 +23,7 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
-          git pull --rebase && git rebase
+          git pull --rebase && git rebase develop
 
       - name: Try Push
         if: success()
