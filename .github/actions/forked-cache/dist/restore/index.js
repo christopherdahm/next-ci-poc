@@ -5114,7 +5114,7 @@ var Inputs;
     Inputs["Key"] = "key";
     Inputs["Path"] = "path";
     Inputs["RestoreKeys"] = "restore-keys";
-    Inputs["Test"] = "test";
+    Inputs["RestoreOnly"] = "restore-only";
 })(Inputs = exports.Inputs || (exports.Inputs = {}));
 var Outputs;
 (function (Outputs) {
@@ -5234,17 +5234,6 @@ const utils = __importStar(__webpack_require__(443));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
-            core.warning(`Restore test: -> ${core.getInput(constants_1.Inputs.Test)} <-`);
             // Validate inputs, this can cause task failure
             if (!utils.isValidEvent()) {
                 utils.logWarning(`Event Validation Error: The event type ${process.env[constants_1.Events.Key]} is not supported because it's not tied to a branch or tag ref.`);

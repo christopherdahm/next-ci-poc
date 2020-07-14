@@ -11,8 +11,8 @@ inputs:
   restore-keys:
     description: 'An ordered list of keys to use for restoring the cache if no cache hit occurred for key'
     required: false
-  test:
-    description: 'Ugh'
+  restore-only:
+    description: 'Determines to skip the save step'
     required: false
 outputs:
   cache-hit:
@@ -21,8 +21,7 @@ runs:
   using: 'node12'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-#  post-if: "success() && ${{ github.event.inputs.test == 'true' }}"
-  post-if: "success() && ${{ env.test == 'true' }}"
+  post-if: 'success()'
 branding:
   icon: 'archive'
   color: 'gray-dark'
