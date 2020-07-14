@@ -11,11 +11,13 @@ jobs:
 
       - name: Checkout develop
         uses: actions/checkout@v2
-        ref: develop
+        with:
+          ref: develop
 
       - name: Check out release/next
         uses: actions/checkout@v2
-        ref: release/next
+        with:
+          ref: release/next
 
       - name: User relative author
         if: success()
