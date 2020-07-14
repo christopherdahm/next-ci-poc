@@ -1,0 +1,25 @@
+name: Automatic Rebase
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  rebase:
+    name: Rebase Next
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          ref: 'release/next'
+          fetch-depth: 0
+
+      - name: Try Rebase
+        if: success()
+        run: |
+          git rebase develop
+
+      - name: Try Push
+        if: success()
+        run: |
+          git push
