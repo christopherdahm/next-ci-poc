@@ -29,7 +29,7 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
-          git branch -a && git pull --rebase && git rebase --onto develop && git pull --rebase
+          git branch -a && git pull --rebase && git rebase develop && git pull --rebase
 
 #      - name: Try Push
 #        if: success()
