@@ -20,6 +20,10 @@ jobs:
           ref: 'release/next'
           fetch-depth: 0
 
+      - name: User relative author
+        run: |
+          git config --global user.email ${{ github.event.pusher.email }} && git config --global user.name ${{ github.event.pusher.name }}
+
       - name: Try Rebase
         if: success()
         run: |
