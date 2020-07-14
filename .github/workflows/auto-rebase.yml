@@ -39,7 +39,7 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
-          git rebase develop
+          git rebase origin/develop
 
 #      - name: Try Push
 #        if: success()
