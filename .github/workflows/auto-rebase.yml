@@ -15,11 +15,21 @@ jobs:
           ref: develop
           fetch-depth: 0
 
+      - name: Update develop from upstream
+        if: success()
+        run: |
+          git fetch upstream && git pull --rebase
+
       - name: Check out release/next
         uses: actions/checkout@v1
         with:
           ref: release/next
           fetch-depth: 0
+
+      - name: Update release/next from upstream
+        if: success()
+        run: |
+          git fetch upstream && git pull --rebase
 
       - name: User relative author
         if: success()
@@ -29,7 +39,7 @@ jobs:
       - name: Try Rebase
         if: success()
         run: |
-          git branch -a && git pull --rebase && git rebase develop && git pull --rebase
+          git rebase develop && git pull --rebase
 
 #      - name: Try Push
 #        if: success()
