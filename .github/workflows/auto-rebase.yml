@@ -11,10 +11,11 @@ jobs:
 
       - name: Checkout develop
         uses: actions/checkout@v2
+        ref: develop
 
       - name: Check out release/next
-        run: |
-          git checkout release/next
+        uses: actions/checkout@v2
+        ref: release/next
 
       - name: User relative author
         if: success()
