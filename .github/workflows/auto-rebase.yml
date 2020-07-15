@@ -57,6 +57,6 @@ jobs:
 #            [1]: https://github.com/peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
 #
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: origin/develop
-          head: origin/release/next
+          base: develop
+          head: release/next
           labels: Release Approved :)
