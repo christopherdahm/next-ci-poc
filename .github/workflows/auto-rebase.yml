@@ -54,7 +54,7 @@ jobs:
         if: failure()
         uses: peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Backfill Develop into Next
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
