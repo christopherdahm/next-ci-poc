@@ -43,11 +43,12 @@ jobs:
 
       - name: Create Pull Request
         if: failure()
-        uses: grassedge/git-pr-release-action@74169c50b9d00129f56a4b03b3309a2ab392f587
+        uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #          commit-message: Backfill Develop into Next
           owner: ${{ github.actor }} <${{ github.event.pusher.email }}>
-#          title: '[Backfill] Develop -> Next'
+          title: '[Backfill] Develop -> Next'
 #          body: |
 #            :warning: ### Auto Rebase of Next with Develop failed :warning:
 #
@@ -56,7 +57,7 @@ jobs:
 #
 #            [1]: https://github.com/peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
 #
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: develop
-          head: release/next
-          labels: Release Approved :)
+#          token: ${{ secrets.GITHUB_TOKEN }}
+          base: release/next
+          head: develop
+#          labels: Release Approved :)
