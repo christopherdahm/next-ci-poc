@@ -67,6 +67,6 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
 
-          branch: backfill/develop-to-next
+          branch: develop
           base: release/next
           labels: Release Approved :)
