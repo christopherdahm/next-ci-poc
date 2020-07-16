@@ -26,7 +26,7 @@ jobs:
       - name: Try Rebase
         id: try-rebase
         run: |
-          git rebase --onto origin/develop origin/release/next
+          git rebase origin/release/next origin/develop
 
       - name: Push changes
         if: ${{ steps.try-rebase.conclusion == 'success' }}
