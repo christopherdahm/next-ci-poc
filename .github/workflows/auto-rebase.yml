@@ -45,6 +45,11 @@ jobs:
           ref: develop
           fetch-depth: 0
 
+      - name: Branchy
+        if: failure()
+        run: |
+          git checkout -b reset/next develop
+
       - name: Create Pull Request
         if: failure()
         uses: peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
@@ -62,6 +67,6 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-pull-request@40e70b8f7b4f2b5c96d75987c33edeb013cb81ab
 
-          branch: develop
+          branch: reset/next
           base: release/next
           labels: Release Approved :)
