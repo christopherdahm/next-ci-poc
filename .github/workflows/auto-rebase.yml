@@ -25,9 +25,8 @@ jobs:
 
       - name: Try Rebase
         id: try-rebase
-        continue-on-error: true
         run: |
-          git rebase origin/develop
+          git rebase --onto origin/release/next origin/develop
 
       - name: Push changes
         if: ${{ steps.try-rebase.conclusion == 'success' }}
@@ -39,7 +38,7 @@ jobs:
 
       - name: Check out develop
         id: check-dev
-        if: ${{ steps.try-rebase.conclusion == 'failure' }}
+        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
         uses: actions/checkout@v2
         with:
           ref: develop
@@ -47,30 +46,30 @@ jobs:
 
       - name: Branchy
         id: branchy
-        if: ${{ steps.check-dev.conclusion == 'success' }}
+        if: ${{ failure() && steps.check-dev.conclusion == 'success' }}
         run: |
           git checkout -b reset/next-onto-develop origin/develop && git push origin HEAD --force
 
       - name: Picky
         id: picky
-        if: ${{ steps.branchy.conclusion == 'success' }}
+        if: ${{ failure() && steps.branchy.conclusion == 'success' }}
         run: |
           git cherry-pick ..origin/release/next
 
       - name: Committy
         id: committy
-        if: ${{ steps.picky.conclusion == 'success' || steps.picky.conclusion == 'failure' }}
+        if: ${{ failure() && (steps.picky.conclusion == 'success' || steps.picky.conclusion == 'failure') }}
         run: |
           git commit -am "Accepting merge conflicts for hooman resolution"
 
       - name: Pushy
         id: pushy
-        if: ${{ steps.committy.conclusion == 'success' }}
+        if: ${{ failure() && steps.committy.conclusion == 'success' }}
         run: |
           git push origin HEAD --force
 
       - name: Create Pull Request
-        if: ${{ steps.pushy.conclusion == 'success' }}
+        if: ${{ failure() && steps.pushy.conclusion == 'success' }}
         uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
