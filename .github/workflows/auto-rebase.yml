@@ -21,7 +21,7 @@ jobs:
 
       - name: User relative author
         run: |
-          git config user.email ${{ github.event.pusher.email }} && git config user.name ${{ github.event.pusher.name }}
+          git config user.email ${{ github.event.pusher.email }} && git config user.name ${{ github.event.pusher.name }} && git config --list
 
       - name: Try Rebase
         id: try-rebase
