@@ -25,6 +25,7 @@ jobs:
 
       - name: Try Rebase
         id: try-rebase
+        continue-on-error: true
         run: |
           git rebase origin/develop
 
