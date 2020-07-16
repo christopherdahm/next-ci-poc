@@ -44,12 +44,31 @@ jobs:
           fetch-depth: 0
 
       - name: Branchy
+        id: branchy
         if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
         run: |
           git checkout -b reset/next-onto-develop origin/develop && git push origin HEAD --force
 
+      - name: Picky
+        id: picky
+        if: ${{ failure() && steps.branchy.conclusion == 'success' }}
+        run: |
+          git cherry-pick ..origin/release/next
+
+      - name: Committy
+        id: committy
+        if: ${{ failure() && steps.picky.conclusion == 'success' }}
+        run: |
+          git commit -am "Accepting merge conflicts for hooman resolution"
+
+      - name: Pushy
+        id: pushy
+        if: ${{ failure() && steps.committy.conclusion == 'success' }}
+        run: |
+          git push origin HEAD --force
+
       - name: Create Pull Request
-        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
+        if: ${{ failure() && steps.pushy.conclusion == 'success' }}
         uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
