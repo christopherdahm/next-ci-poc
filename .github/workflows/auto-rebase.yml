@@ -36,6 +36,11 @@ jobs:
           branch: release/next
           force: true
 
+      - name: Do this
+        if: always()
+        run: |
+          echo ${{ steps.try-rebase.conclusion }}
+
       - name: Check out develop
         if: failure() && ${{ steps.try-rebase.conclusion == 'failure' }}
         uses: actions/checkout@v2
