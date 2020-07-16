@@ -52,12 +52,14 @@ jobs:
       - name: Picky
         id: picky
         if: ${{ failure() && steps.branchy.conclusion == 'success' }}
+        continue-after-fail: true
         run: |
           git cherry-pick ..origin/release/next
 
       - name: Committy
         id: committy
-        if: ${{ failure() && steps.picky.conclusion == 'success' }}
+        needs: picky
+        if: ${{ failure() && (steps.picky.conclusion == 'success' || steps.picky.conclusion == 'failure') }}
         run: |
           git commit -am "Accepting merge conflicts for hooman resolution"
 
