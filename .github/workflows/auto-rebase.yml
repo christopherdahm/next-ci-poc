@@ -39,7 +39,7 @@ jobs:
       - name: Do this
         if: always()
         run: |
-          echo ${{ steps.try-rebase.conclusion }} ${{ steps.try-rebase.conclusion == failure }} # ${{ steps.try-rebase.conclusion == 'failure' }}
+          echo ${{ steps.try-rebase.conclusion }} ${{ steps.try-rebase.conclusion == 'failure' }}
 
       - name: Check out develop
         if: failure() && ${{ steps.try-rebase.conclusion == 'failure' }}
