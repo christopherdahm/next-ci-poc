@@ -55,7 +55,7 @@ jobs:
         uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          branch: reset/next
+          head: reset/next
           base: release/next
           title: '[Resolve] Develop -> Next'
 
