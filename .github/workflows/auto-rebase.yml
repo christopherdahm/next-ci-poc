@@ -38,17 +38,17 @@ jobs:
           branch: release/next
           force: true
 
-      - name: Check out develop
-        if: failure()
-        uses: actions/checkout@v2
-        with:
-          ref: develop
-          fetch-depth: 0
-
-      - name: Branchy
-        if: failure()
-        run: |
-          git checkout -b reset/next develop
+#      - name: Check out develop
+#        if: failure()
+#        uses: actions/checkout@v2
+#        with:
+#          ref: develop
+#          fetch-depth: 0
+#
+#      - name: Branchy
+#        if: failure()
+#        run: |
+#          git checkout -b reset/next develop
 
       - name: Create Pull Request
         if: failure()
