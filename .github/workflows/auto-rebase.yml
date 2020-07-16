@@ -48,7 +48,7 @@ jobs:
         id: branchy
         if: ${{ failure() && steps.check-dev.conclusion == 'success' }}
         run: |
-          git checkout -b reset/next-onto-develop origin/develop && git push origin HEAD --force
+          git checkout -b reset/next-onto-develop origin/develop
 
       - name: Picky
         id: picky
