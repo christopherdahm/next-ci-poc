@@ -17,7 +17,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server trigger hoho claws 2 222222
 
+<<<<<<< HEAD
 none :) hhhehehe ha
+=======
+none :) woof
+>>>>>>> d5ca558... Update README.md
 none
 none
 none
