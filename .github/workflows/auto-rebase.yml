@@ -52,6 +52,7 @@ jobs:
 
       - name: Picky
         id: picky
+        continue-on-error: true
         if: ${{ failure() && steps.branchy.conclusion == 'success' }}
         run: |
           git cherry-pick ..origin/release/next
