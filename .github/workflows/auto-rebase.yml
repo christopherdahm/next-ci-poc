@@ -25,11 +25,12 @@ jobs:
 
       - name: Try Rebase
         id: try-rebase
+        continue-after-failure: true
         run: |
           git rebase origin/develop
 
       - name: Push changes
-        if: success() && ${{ steps.try-rebase.conclusion == 'success' }}
+        if: ${{ steps.try-rebase.conclusion == 'success' }}
         uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -37,7 +38,8 @@ jobs:
           force: true
 
       - name: Check out develop
-        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
+        id: check-dev
+        if: ${{ steps.try-rebase.conclusion == 'failure' }}
         uses: actions/checkout@v2
         with:
           ref: develop
@@ -45,32 +47,31 @@ jobs:
 
       - name: Branchy
         id: branchy
-        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
+        if: ${{ steps.check-dev.conclusion == 'success' }}
         run: |
           git checkout -b reset/next-onto-develop origin/develop && git push origin HEAD --force
 
       - name: Picky
         id: picky
-        if: ${{ failure() && steps.branchy.conclusion == 'success' }}
-        continue-after-fail: true
+        if: ${{ steps.branchy.conclusion == 'success' }}
         run: |
           git cherry-pick ..origin/release/next
 
       - name: Committy
         id: committy
         needs: picky
-        if: ${{ failure() && (steps.picky.conclusion == 'success' || steps.picky.conclusion == 'failure') }}
+        if: ${{ steps.picky.conclusion == 'success' || steps.picky.conclusion == 'failure' }}
         run: |
           git commit -am "Accepting merge conflicts for hooman resolution"
 
       - name: Pushy
         id: pushy
-        if: ${{ failure() && steps.committy.conclusion == 'success' }}
+        if: ${{ steps.committy.conclusion == 'success' }}
         run: |
           git push origin HEAD --force
 
       - name: Create Pull Request
-        if: ${{ failure() && steps.pushy.conclusion == 'success' }}
+        if: ${{ steps.pushy.conclusion == 'success' }}
         uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
