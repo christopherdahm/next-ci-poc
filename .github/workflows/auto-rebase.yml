@@ -29,7 +29,7 @@ jobs:
           git rebase origin/develop
 
       - name: Push changes
-        if: ${{ job.try-rebase.status == 'success' }}
+        if: ${{ steps.try-rebase.conclusion == 'success' }}
         uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -37,19 +37,19 @@ jobs:
           force: true
 
       - name: Check out develop
-        if: ${{ job.try-rebase.status == 'failure' }}
+        if: ${{ steps.try-rebase.conclusion == 'failure' }}
         uses: actions/checkout@v2
         with:
           ref: develop
           fetch-depth: 0
 
       - name: Branchy
-        if: ${{ job.try-rebase.status == 'failure' }}
+        if: ${{ steps.try-rebase.conclusion == 'failure' }}
         run: |
           git checkout -b reset/next-onto-develop origin/develop && git push origin HEAD --force
 
       - name: Create Pull Request
-        if: ${{ job.try-rebase.status == 'failure' }}
+        if: ${{ steps.try-rebase.conclusion == 'failure' }}
         uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
