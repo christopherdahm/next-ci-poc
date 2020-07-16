@@ -15,11 +15,7 @@ Rum
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
-<<<<<<< HEAD
 ## Development server trigger hoho claws 2
-=======
-## Development server trigger hehe
->>>>>>> cda8bf4... Update README.md
 
 none
 none
