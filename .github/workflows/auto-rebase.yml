@@ -36,25 +36,20 @@ jobs:
           branch: release/next
           force: true
 
-      - name: Do this
-        if: always()
-        run: |
-          echo ${{ steps.try-rebase.conclusion }} ${{ steps.try-rebase.conclusion == 'failure' }} failure()
-
       - name: Check out develop
-        if: failure() && ${{ steps.try-rebase.conclusion == 'failure' }}
+        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
         uses: actions/checkout@v2
         with:
           ref: develop
           fetch-depth: 0
 
       - name: Branchy
-        if: failure() && ${{ steps.try-rebase.conclusion == 'failure' }}
+        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
         run: |
           git checkout -b reset/next-onto-develop origin/develop && git push origin HEAD --force
 
       - name: Create Pull Request
-        if: failure() && ${{ steps.try-rebase.conclusion == 'failure' }}
+        if: ${{ failure() && steps.try-rebase.conclusion == 'failure' }}
         uses: thomaseizinger/create-pull-request@1dde00b9ad62f485245039414b37da2945d0e986
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
