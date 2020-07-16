@@ -48,7 +48,7 @@ jobs:
       - name: Branchy
         if: failure()
         run: |
-          git checkout -b reset/next-onto-develop develop && git push --force
+          git checkout -b reset/next-onto-develop develop && git push --set-upstream origin --force
 
       - name: Create Pull Request
         if: failure()
