@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check out next
         uses: actions/checkout@v2
-        if: ${{ failure() }}
+#        if: ${{ failure() }}
         with:
           token: ${{ secrets.SECRETIVE_TOKEN }}
           ref: next
