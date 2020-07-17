@@ -17,9 +17,9 @@ jobs:
           ref: next
           fetch-depth: 0
 
-      - name: Update next from upstream
-        run: |
-          git pull --rebase
+#      - name: Update next from upstream
+#        run: |
+#          git pull --rebase
 
       - name: User relative author
         run: |
