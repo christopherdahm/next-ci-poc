@@ -16,11 +16,14 @@ Rum
 Rum
 I
 Like
+<<<<<<< HEAD
 Like
 Like
 Like
 Food
 Food
+=======
+>>>>>>> 1a9dc88... Update README.md
 Food
 Rum
 Rum
