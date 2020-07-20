@@ -21,11 +21,6 @@ Rum
 Rum
 I
 Like
-Like
-Like
-Like
-Food
-Food
 Food
 Rum
 Rum
