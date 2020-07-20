@@ -8,7 +8,6 @@ hhhehehe
 Rum
 Rum
 Rum
-Rum
 1
 1
 1
