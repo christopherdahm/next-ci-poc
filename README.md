@@ -3,9 +3,6 @@
 Hi 2 trigger trigger
 
 hhhehehe
-hhhehehe
-hhhehehe
-hhhehehe
 Rum
 Rum
 Rum
