@@ -19,6 +19,10 @@ Like
 Like
 Like
 Food
+Food
+Food
+Rum
+Rum
 Rum
 Rum
 Rum
@@ -36,6 +40,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 none :) hhhehehe ha haha
 none
+none ok
+none ok
 none ok
 none ok
 none ok
